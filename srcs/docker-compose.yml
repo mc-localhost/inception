@@ -1,0 +1,51 @@
+# change volumes so that home/vvasiuko/data/...
+services:
+  nginx:
+    build: ./requirements/nginx/.
+    container_name: nginx
+    restart: always
+    depends_on:
+      - wordpress
+      - mariadb
+    ports:
+      - "443:443"
+    volumes:
+      - ./data/web:/var/www/html
+    networks:
+      inception:
+    env_file:
+      - .env
+  wordpress:
+    build: ./requirements/wordpress/.
+    container_name: wordpress
+    restart: always
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    volumes:
+      - ./data/web:/var/www/html
+    networks:
+      inception:
+    env_file:
+      - .env
+  mariadb:
+    build: ./requirements/mariadb/.
+    container_name: mariadb
+    restart: always
+    ports:
+      - "3306:3306"
+    networks:
+      inception:
+    volumes:
+      - ./data/database:/var/lib/mysql
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u${DB_USER}", "-p${DB_PASS}"]
+      start_period: 20s
+      interval: 10s
+      timeout: 5s
+      retries: 5
+networks:
+  inception:
+    name: inception
