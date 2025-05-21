@@ -1,4 +1,3 @@
-# change volumes so that home/vvasiuko/data/...
 services:
   nginx:
     build: ./requirements/nginx/.
@@ -51,3 +50,16 @@ services:
 networks:
   inception:
     name: inception
+# volumes:
+#   database:
+#     driver: local
+#     driver_opts:
+#       device: ${DATA_DIR}/database
+#       o: bind
+#       type: none
+#   web:
+#     driver: local
+#     driver_opts:
+#       device: ${DATA_DIR}/web
+#       o: bind
+#       type: none

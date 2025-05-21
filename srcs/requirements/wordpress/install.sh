@@ -1,12 +1,6 @@
 #!/bin/bash
 cd /var/www/html
 
-# if mariadb-client is installed for wordpress
-# while ! mysqladmin ping -h"$DB_HOST" --silent; do
-#     echo "Waiting for MariaDB..."
-#     sleep 2
-# done
-
 # wp-cli.phar (PHP ARchive) is an archive that bundles the entire WP-CLI command-line interface for WordPress
 if [ ! -f wp-cli.phar ]; then
 	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
