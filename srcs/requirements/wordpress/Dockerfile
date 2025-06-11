@@ -2,7 +2,9 @@ FROM debian:bullseye
 
 RUN apt update -y && \
 	apt install -y \
-	php-fpm php-mysql curl
+	php-fpm php-mysql curl && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /run/php
 RUN mkdir -p /var/www/html

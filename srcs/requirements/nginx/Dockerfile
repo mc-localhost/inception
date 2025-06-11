@@ -2,7 +2,9 @@ FROM debian:bullseye
 
 RUN apt update -y && \
 	apt install -y \
-	nginx openssl
+	nginx openssl && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/*
 
 # -p will create parent folders if they do not exist
 RUN mkdir -p /etc/nginx/ssl

@@ -3,7 +3,9 @@ FROM debian:bullseye
 RUN apt update -y && \
 	apt install -y \
 	mariadb-server \
-	gettext
+	gettext && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/*
 
 # contains init_file = /etc/mysql/init.sql line
 COPY 50-server.cnf /etc/mysql/mariadb.conf.d/.
