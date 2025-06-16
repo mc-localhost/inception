@@ -9,7 +9,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - ./data/web:/var/www/html
+      - web:/var/www/html
     networks:
       inception:
     env_file:
@@ -22,7 +22,7 @@ services:
       mariadb:
         condition: service_healthy
     volumes:
-      - ./data/web:/var/www/html
+      - web:/var/www/html
     networks:
       inception:
     env_file:
@@ -36,10 +36,10 @@ services:
     networks:
       inception:
     volumes:
-      - ./data/database:/var/lib/mysql
+      - database:/var/lib/mysql
     env_file:
       - .env
-# optional., just to check that user was created
+# optional, just to check that user was created
 # grep alive needed since mysqladmin returns 0 for any response
     healthcheck:
       test: mysqladmin ping -h localhost -u${DB_USER} -p${DB_PASS} | grep alive
@@ -47,19 +47,21 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+volumes:
+  database:
+    driver: local
+    driver_opts:
+      device: ${DATA_DIR}/database
+      o: bind
+      type: none
+  web:
+    driver: local
+    driver_opts:
+      device: ${DATA_DIR}/web
+      o: bind
+      type: none
+
 networks:
   inception:
     name: inception
-# volumes:
-#   database:
-#     driver: local
-#     driver_opts:
-#       device: ${DATA_DIR}/database
-#       o: bind
-#       type: none
-#   web:
-#     driver: local
-#     driver_opts:
-#       device: ${DATA_DIR}/web
-#       o: bind
-#       type: none
