@@ -2,8 +2,8 @@ NAME=inception
 COMPOSE_FILE=./srcs/docker-compose.yml
 
 up:
-	mkdir -p ./srcs/data/database
-	mkdir -p ./srcs/data/web
+	mkdir -p /home/vvasiuko/data/database
+	mkdir -p /home/vvasiuko/data/web
 	docker compose -f $(COMPOSE_FILE) up --build -d
 
 down:
@@ -21,8 +21,9 @@ ps:
 
 clean:
 	docker compose -f $(COMPOSE_FILE) down -v --remove-orphans
-	rm -rf ./srcs/data/database 
-	rm -rf ./srcs/data/web
+	rm -rf /home/vvasiuko/data/database 
+	rm -rf /home/vvasiuko/data/web
+	docker system prune -a -f
 
 re: clean up
 
