@@ -20,7 +20,7 @@ ps:
 	docker compose -f $(COMPOSE_FILE) ps
 
 clean:
-	docker-compose -f $(COMPOSE_FILE) down -v --remove-orphans
+	docker compose -f $(COMPOSE_FILE) down -v --remove-orphans
 	rm -rf ./srcs/data/database 
 	rm -rf ./srcs/data/web
 
