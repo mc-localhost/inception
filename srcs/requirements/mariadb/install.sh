@@ -2,7 +2,7 @@
 
 if [ ! -d "/var/lib/mysql/mysql" ]; then
     mysql_install_db --user=mysql --datadir=/var/lib/mysql
-    mysqld_safe --user-mysql &
+    mysqld_safe --user=mysql &
     pid="$!"
     until mysqladmin -u root ping -h localhost --silent; do
         echo "waiting for mysqladmin to run..."
