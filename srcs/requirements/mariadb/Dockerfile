@@ -19,4 +19,7 @@ RUN mkdir /run/mysqld
 
 RUN chmod +x install.sh
 
+RUN chown -R mysql:mysql /var/lib/mysql
+RUN chmod 755 /var/lib/mysql
+
 CMD [ "./install.sh" ]

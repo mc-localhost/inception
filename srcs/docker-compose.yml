@@ -50,12 +50,14 @@ services:
 
 volumes:
   database:
+    name: database
     driver: local
     driver_opts:
       device: ${DATA_DIR}/database
       o: bind
       type: none
   web:
+    name: web
     driver: local
     driver_opts:
       device: ${DATA_DIR}/web
