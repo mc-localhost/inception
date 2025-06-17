@@ -24,7 +24,7 @@ ps:
 
 clean:
 	docker compose -f $(COMPOSE_FILE) down -v --remove-orphans
-	docker volume rm 1docler volume ls -q`
+	docker volume rm `docker volume ls -q`
 	rm -rf ${DATA_DIR}/database 
 	rm -rf ${DATA_DIR}/web
 	docker system prune -a -f
