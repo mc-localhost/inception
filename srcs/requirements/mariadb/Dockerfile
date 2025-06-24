@@ -15,9 +15,9 @@ COPY init_env.sql /etc/mysql/init_env.sql
 # COPY init.sql /etc/mysql/init.sql
 COPY install.sh .
 
-RUN mkdir /run/mysqld
-RUN chown -R mysql:mysql /var/lib/mysql /run/mysqld
-RUN chmod 755 /var/lib/mysql
+RUN mkdir -p /run/mysqld
+RUN chown -R mysql:mysql /run/mysqld
+#RUN chmod 755 /var/lib/mysql
 
 RUN chmod +x install.sh
 

@@ -1,9 +1,9 @@
 -- without this DB_USER doesn't work...
-USE mysql;
-FLUSH PRIVILEGES;
-DELETE FROM	mysql.user WHERE User='';
-DROP DATABASE test;
-DELETE FROM mysql.db WHERE Db='test';
+-- USE mysql;
+-- FLUSH PRIVILEGES;
+-- DELETE FROM	mysql.user WHERE User='';
+-- DROP DATABASE test;
+-- DELETE FROM mysql.db WHERE Db='test';
 --  adding password for root
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASS}';
 -- creating database for wordpress and admin level user for it

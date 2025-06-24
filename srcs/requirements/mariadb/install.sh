@@ -1,6 +1,5 @@
 #!/bin/bash
-
-if [ ! -d "/var/lib/mysql/mysql" ]; then
+if [ ! -d "/var/lib/mysql/${DB_NAME}" ]; then
     mysql_install_db --user=mysql --datadir=/var/lib/mysql
     mysqld_safe --user=mysql &
     pid="$!"
@@ -19,5 +18,5 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
     # wait for mysqld to be done, only to restart later in the code
     wait "$pid"
 fi
-
+echo "i'm outside of if in install.sh"
 exec mysqld_safe --user=mysql
